@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+</head>
+<body>
+        {% include 'main/head.html' %}
+
+
+        <table border="2" align="center">
+         <tr><td colspan="2">
+            <a href="{{ object.image.url }}">
+            <img src="{{ object.image.url }}" width="200" height="200">
+                            </a>
+                        </td></tr>
+                        <tr><td>Category</td><td> {{ object.categorieName }} </td></tr>
+                        <tr><td>NAME</td><td> {{ object.name }} </td></tr>
+                        <tr><td>Price</td><td> {{ object.price }} </td></tr>
+                        <tr><td>Price</td><td> {{ object.message }} </td></tr>
+
+                        <tr><td colspan="2">
+                            <a href="..">
+                             Add To Cart
+                            </a>
+                        </td></tr>
+                    </table>
+
+
+</body>
+</html>
