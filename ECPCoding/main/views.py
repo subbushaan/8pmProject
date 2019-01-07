@@ -5,9 +5,30 @@ from django.contrib.auth.forms import UserCreationForm
 
 from product.models import Product
 from product.models import Categories
+from customer.models import CCItems
 
 from django.contrib.auth import authenticate
 from django.contrib.auth.views import LogoutView
+
+
+def removeFromCart(request):
+    key = request.GET.get("key")
+    name = request.session['name']
+
+    CCItems.objects.filter(pid=key,name=name).delete()
+
+    qs = CCItems.objects.filter(name=name)
+    p = Product.objects.all()
+    return render(request, "customer/cartitmes.html", {"product": qs, "pp": p})
+
+
+def openCart(request):
+    name = request.session['name']
+    qs =  CCItems.objects.filter(name=name)
+    p = Product.objects.all()
+    return render(request,"customer/cartitmes.html",{"product":qs,"pp":p})
+
+
 
 
 def userLogout(request):
@@ -85,7 +106,7 @@ class ViewByCategory(View):
         c = Categories.objects.all()
         return render(request, "main/index.html", {"product": p, "category": c})
 
-from customer.models import CCItems
+
 def addToCart(request):
     key = request.GET.get("key")
     p = Product.objects.all()

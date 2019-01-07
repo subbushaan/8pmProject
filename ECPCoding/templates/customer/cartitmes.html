@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+
+    {% include 'main/head.html' %}
+
+
+
+
+{% if not product %}
+    <table align="center" border="2" width="500">
+        <tr>
+            <th> No Items Selected </th>
+        </tr>
+    </table>
+
+{% else %}
+<table align="center" border="0" width="500"><tr>
+{% for y in product %}
+    {% for n in pp %}
+        {% if y.pid == n.idno %}
+   <td width="100">
+
+   <div class="card" style=" width: 18rem;">
+  <img src="{{ n.image.url }}" class="card-img-top" alt="..." width="200" height="200">
+  <div class="card-body">
+    <h5 class="card-title">{{ n.categorieName }}</h5>
+    <p class="card-text"> Product Name :    {{ n.name }} </p>
+    <p class="card-text"> Product Price :    {{ n.price }} </p>
+
+      <a href="#" class="btn btn-primary">Buy</a>
+
+    <p class="card-text">
+        <a href="/removefromcart/?key={{ n.idno }}">
+                            Remove From Cart
+                            </a> </p>
+
+  </div>
+</div>
+
+
+
+        {% comment %}<table border="0" align="center">
+                        <tr><td colspan="2">
+                            <a href="{{ n.image.url }}">
+                                <img src="{{ n.image.url }}" width="200" height="200">
+                            </a>
+                        </td></tr>
+                        <tr><td>Category</td><td> {{ n.categorieName }} </td></tr>
+                        <tr><td>NAME</td><td> {{ n.name }} </td></tr>
+                        <tr><td>Price</td><td> {{ n.price }} </td></tr>
+                        <tr><td>More</td><td>
+
+                        </td></tr>
+
+                        <tr><td colspan="2">
+                            <a href="/addtocart/?key={{ y.idno }}">
+
+                            </a>
+                        </td></tr>
+                    </table>{% endcomment %}
+   </td>
+   {% if forloop.last %}
+     </tr>
+   {% else %}
+     {% if forloop.counter|divisibleby:"3" %}
+       </tr><tr>
+     {% endif %}
+       {% endif %}
+   {% endif %}
+        {% endfor %}
+{% endfor %}
+</table>
+{% endif %}
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>

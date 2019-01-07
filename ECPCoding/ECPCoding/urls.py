@@ -30,6 +30,8 @@ from main.views import validateUser
 from main.views import UserIndexPage
 from main.views import UserViewByCategory
 from main.views import userLogout
+from main.views import openCart
+from main.views import removeFromCart
 
 
 from product.models import Product
@@ -43,6 +45,8 @@ urlpatterns = [
     path('register/',userCreation),
     path('validateUser/',validateUser),
     path('userlogout/',userLogout),
+    path('opencart/',openCart),
+    path('removefromcart/',removeFromCart),
     path('userhome/',UserIndexPage.as_view()),
     path('usersearch/',UserViewByCategory.as_view()),
 
