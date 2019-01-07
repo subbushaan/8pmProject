@@ -1,0 +1,124 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E Commerce</title>
+</head>
+<body>
+           {% include 'main/head.html' %}
+
+           <table align="center">
+                 <tr>
+                <td align="right">
+                    <h2>Cart Items: {{ items }}</h2>
+                </td>
+            </tr>
+           </table>
+
+        <table align="center">
+            <tr>
+                <th>
+                    <table border="2">
+
+                    <tr>
+                    <th colspan="2">
+                        <a href="/register/">
+                             <font face="Arial Black">
+                             Create Account
+                             </font>
+                        </a>
+                    </th>
+                </tr>
+
+
+                     <tr>
+                    <th width="150">
+                        <font face="Arial Black">
+                            <a href="/user/">
+                            User Login
+                            </a>
+                        </font>
+                    </th>
+
+                    <tr>
+                    <th width="150">
+                        <font face="Arial Black">
+                            <a href="/home/">
+                            All
+                            </a>
+                        </font>
+                    </th>
+                    </tr>
+                        {% for x in category %}
+                        <tr>
+                            <th width="150">
+                                <font face="Arial Black">
+
+                                    <a href="/search/?cat={{ x }}">
+                                        {{ x }}
+                                    </a>
+                                </font>
+                            </th>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+                </th>
+
+
+
+<td>
+
+
+{% if not product %}
+    <table align="center" border="2">
+        <tr>
+            <th> No Products Available</th>
+        </tr>
+    </table>
+
+{% else %}
+<table align="center" border="2"><tr>
+{% for y in product %}
+   <td width="100">
+        <table border="0" align="center">
+                        <tr><td colspan="2">
+                            <a href="{{ y.image.url }}">
+                                <img src="{{ y.image.url }}" width="200" height="200">
+                            </a>
+                        </td></tr>
+                        <tr><td>Category</td><td> {{ y.categorieName }} </td></tr>
+                        <tr><td>NAME</td><td> {{ y.name }} </td></tr>
+                        <tr><td>Price</td><td> {{ y.price }} </td></tr>
+                        <tr><td>More</td><td>
+                            <a href="/productdetails{{ y.idno }}/">
+                            Show
+                            </a>
+                        </td></tr>
+
+                        <tr><td colspan="2">
+                            <a href="/addtocart/?key={{ y.idno }}" >
+                             Add To Cart
+                            </a>
+                        </td></tr>
+                    </table>
+   </td>
+   {% if forloop.last %}
+     </tr>
+   {% else %}
+     {% if forloop.counter|divisibleby:"3" %}
+       </tr><tr>
+     {% endif %}
+   {% endif %}
+{% endfor %}
+</table>
+{% endif %}
+
+</td>
+        </tr>
+        </table>
+
+
+</body>
+</html>

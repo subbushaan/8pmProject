@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+        {% include 'main/head.html' %}
+
+        <form method="post" action="/validateUser/">
+            {% csrf_token %}
+            <table align="center" border="0">
+                <tr>
+                    <th width="200" colspan="2">
+                        <h2> User Login </h2>
+                    </th>
+                </tr>
+                <tr>
+                    <td> Username </td>
+                    <td> <input type="text" required name="t1"></td>
+                </tr>
+
+                 <tr>
+                    <td> Password </td>
+                    <td> <input type="password" required name="t2"></td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <input type="submit" value="Login">
+                    </th>
+                </tr>
+
+                <tr>
+                    <th colspan="2">
+                        <a href="/register/">
+                            <h2> Create Account </h2>
+                        </a>
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        {{ message }}
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+</body>
+</html>
